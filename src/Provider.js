@@ -69,8 +69,9 @@ module.exports = class Provider {
             console.log('Provider: Job: ' + target + ' has been converted to pdf');
             this._running = false;
 
-            this.run().catch(() => {
-                // ignore error
+            this.run().catch((err) => {
+                console.log('Provider: Failed');
+                this._running = false;
             })
         });
 
@@ -82,7 +83,8 @@ module.exports = class Provider {
     receive() {
         console.log('Provider: Func receive() has been called');
         this.run().catch((err) => {
-            // ignore error
+            console.log('Provider: Failed');
+            this._running = false;
         });
     }
 }

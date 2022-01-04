@@ -13,7 +13,9 @@ module.exports = class ArticleNoLazy extends Article {
         const html = await super.html();
         const $ = cheerio.load(html);
         $(`img`).each((i, elem) => {
-            $(elem).attr('src', $(elem).attr('data-src'));
+            const src = $(elem).attr('data-src');
+            if (!src) return;
+            $(elem).attr('src', src.replace('https', 'http'));
         })
         return $.html();
     }
