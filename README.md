@@ -9,6 +9,7 @@
 - 自定义请求 `Secret`
 - 单线程
 - 公众号好文转存为 `PDF`
+- HTTP
 
 ## 自定义 `Secret` 验证
 
@@ -32,6 +33,8 @@ module.exports = {
 curl -X GET -G 'http://localhost:3000/ilikeit' \
  -d 'url=https://mp.weixin.qq.com' \
  -d 'secret=your secret here'
+
+# task has been added
 ```
 
 > 文件默认保存在 当前工作目录 `data` 文件夹下
