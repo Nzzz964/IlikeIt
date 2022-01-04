@@ -57,7 +57,7 @@ module.exports = class Provider {
         fs.mkdirSync(level2, { recursive: true })
 
         // html save path
-        const fph = path.join(level2, `${title}.html`);
+        const fph = path.join(level2, `${digest}.html`);
         fs.writeFileSync(fph, html);
 
         // pdf save path
