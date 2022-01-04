@@ -1,0 +1,18 @@
+{
+  "name": "ilikeit",
+  "version": "1.0.0",
+  "description": "微信公众号文章转存PDF",
+  "author": "Nzzz964",
+  "main": "app.js",
+  "scripts": {},
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.4"
+  }
+}
