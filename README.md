@@ -50,7 +50,7 @@ docker build -t ilikeit:latest .
 ```
 ### 挂载点
 
-> PS: `wkhtmltopdf` 可构建在容器中 放在项目根目录 `bin/wkhtmltopdf` 下
+> PS: `wkhtmltopdf` 可构建在镜像中 放在项目根目录 `bin/wkhtmltopdf` 下
 
 |       挂载点       |     作用      |
 | :----------------: | :-----------: |
