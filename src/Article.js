@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 const axios = require('axios').default;
 
-module.exports = class Article {
+class Article {
     /** @type {string} */
     _target
 
@@ -19,7 +19,7 @@ module.exports = class Article {
      */
     async html() {
         if (this._html) return this._html;
-        await this.initWeb();
+        await this._initWeb();
         return this._html;
     }
 
@@ -28,17 +28,21 @@ module.exports = class Article {
      */
     async title() {
         if (this._title) return this._title;
-        await this.initWeb();
+        await this._initWeb();
         return this._title;
     }
 
     /**
      * @returns {Promise<void>}
      */
-    async initWeb() {
+    async _initWeb() {
         const res = await axios.get(this._target);
         this._html = res.data;
         const $ = cheerio.load(this._html);
         this._title = $(`[property='og:title']`).attr('content').trim();
     }
+}
+
+module.exports = {
+    Article
 }

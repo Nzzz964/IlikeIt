@@ -1,11 +1,11 @@
-module.exports = class JobQueue {
-    /** @type {Array<string>} */
-    _queue
+const logger = require('../logger').logger('JobQueue');
 
-    /** @type {import('./Provider')} */
-    _provider
+class JobQueue {
+    _queue
+    _consumer
 
     constructor() {
+        logger.info('被构造');
         this._queue = [];
     }
 
@@ -15,31 +15,32 @@ module.exports = class JobQueue {
      */
     push(target) {
         this._queue.push(target);
-        console.log('JobQueue: Pushed a job: ' + target);
+        logger.info(`添加了一个任务: ${target}`);
         this.notify();
     }
 
     /**
-     * The service provider will call pull() to get next item from the queue
+     * The service consumer will call pull() to get next item from the queue
      * @returns {string}
      */
     shift() {
         const job = this._queue.shift()
-        if (job) console.log('JobQueue: Shifted a job: ' + job);
+        if (!job) logger.info("任务队列已清空");
         return job;
     }
 
-    /**
-     * @param {import('./Provider')} provider
-     */
-    set provider(provider) {
-        this._provider = provider;
+    set consumer(consumer) {
+        this._consumer = consumer;
     }
 
     /**
-    * Notify the service provider a new item has been pushed
+    * Notify the service consumer a new item has been pushed
     */
     notify() {
-        this._provider?.receive();
+        this._consumer?.consume();
     }
+}
+
+module.exports = {
+    JobQueue
 }

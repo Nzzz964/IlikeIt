@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
-const Article = require('./Article');
+const { Article } = require('./Article');
 
-module.exports = class ArticleNoLazy extends Article {
+class ArticleNoLazy extends Article {
     /**
      * @param {Article} article
      */
@@ -19,4 +19,8 @@ module.exports = class ArticleNoLazy extends Article {
         })
         return $.html();
     }
+}
+
+module.exports = {
+    ArticleNoLazy
 }
